@@ -1,7 +1,6 @@
 /*global jasmine, describe, it, expect, Arboreal*/
 
 if (typeof require !== 'undefined') {
-  util = require("util");
   Arboreal = require('../../lib/arboreal');
 }
 
@@ -129,7 +128,7 @@ describe("Arboreal", function () {
 
     //expect to stop traversing when the iterator returns a falsy value
 
-    tree.traverseDown(function (node) {
+    tree.traverseDown(function() {
       callbackCounter++;
       if (callbackCounter === 3) return false;
     });
@@ -139,7 +138,6 @@ describe("Arboreal", function () {
 
   it("#traverseUp", function () {
     var tree = new Arboreal(),
-        callbackCounter=0,
         treeIds = [],
         spy1 = jasmine.createSpy(),
         spy2 = jasmine.createSpy(),
@@ -247,7 +245,7 @@ describe("Arboreal", function () {
 
     expect(tree.find("0/3").id).toBe("0/3");
     expect(tree.find(function () {
-      return this.depth == 2;
+      return this.depth === 2;
     }).id).toBe("0/0/0");
   });
 
