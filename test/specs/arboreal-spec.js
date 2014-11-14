@@ -170,6 +170,26 @@ describe("Arboreal", function () {
     expect(treeIds.length).toBe(3);
   });
   
+  it("#getLeaves", function () {
+    var tree = new Arboreal(),
+        firstGrandChild,
+        secondGrandChild,
+        secondChild,
+        thirdChild,
+        fourthChild;
+
+    appendSomeChildren(tree);
+
+    firstGrandChild = tree.children[0].children[0];
+    secondGrandChild = tree.children[0].children[1];
+    secondChild = tree.children[1];
+    thirdChild = tree.children[2];
+    fourthChild = tree.children[3];
+
+    expect(tree.getLeaves()).toEqual([firstGrandChild, secondGrandChild, secondChild, thirdChild, fourthChild]);
+    expect(tree.getLeaves().length).toBe(5);
+  });
+  
   it("#bubbleUp", function () {
     var tree = new Arboreal(),
         callbackCounter=0,
